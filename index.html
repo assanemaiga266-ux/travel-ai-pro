@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel AI Pro</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f1f5f9;
+      color: #172554;
+    }
+
+    .sidebar {
+      background: #102447;
+      color: white;
+      width: 230px;
+      min-height: 100vh;
+      padding: 25px 18px;
+      position: fixed;
+      left: 0;
+      top: 0;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .menu a {
+      display: block;
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 14px 10px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+    }
+
+    .menu a.active,
+    .menu a:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    main {
+      margin-left: 230px;
+      padding: 30px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 25px;
+    }
+
+    .subtitle {
+      color: #64748b;
+      margin-top: 7px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .card, .panel {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px #00000008;
+    }
+
+    .card p {
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+
+    .card h2 {
+      font-size: 30px;
+    }
+
+    .panel h2 {
+      margin-bottom: 18px;
+    }
+
+    .button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 17px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
+    }
+
+    .activity {
+      padding: 14px 0;
+      border-bottom: 1px solid #e2e8f0;
+      color: #475569;
+    }
+
+    @media (max-width: 750px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+      }
+
+      .logo {
+        margin-bottom: 15px;
+      }
+
+      .menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+      .menu a {
+        padding: 10px;
+        margin: 0;
+        font-size: 13px;
+      }
+
+      main {
+        margin-left: 0;
+        padding: 20px 14px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">✈ Travel AI Pro</div>
+
+    <nav class="menu">
+      <a href="#" class="active">Tableau de bord</a>
+      <a href="#">Clients</a>
+      <a href="#">Voyages</a>
+      <a href="#">Devis</a>
+      <a href="#">Réservations</a>
+      <a href="#">Assistant IA</a>
+      <a href="#">Paramètres</a>
+    </nav>
+  </aside>
+
+  <main>
+
+    <header>
+      <div>
+        <h1>Tableau de bord</h1>
+        <p class="subtitle">
+          Bienvenue sur Travel AI Pro !
+        </p>
+      </div>
+
+      <button class="button" onclick="ajouterClient()">
+        + Ajouter un client
+      </button>
+    </header>
+
+    <section class="cards">
+
+      <div class="card">
+        <p>Nombre de clients</p>
+        <h2 id="clients">0</h2>
+      </div>
+
+      <div class="card">
+        <p>Demandes de voyage</p>
+        <h2>0</h2>
+      </div>
+
+      <div class="card">
+        <p>Réservations</p>
+        <h2>0</h2>
+      </div>
+
+    </section>
+
+    <section class="panel">
+      <h2>Activités récentes</h2>
+
+      <div id="activites">
+        <p class="activity">
+          Bienvenue ! Votre espace de travail est prêt.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let nombreClients = 0;
+
+    function ajouterClient() {
+      let nom = prompt("Nom du nouveau client :");
+
+      if (nom && nom.trim() !== "") {
+        nombreClients++;
+
+        document.getElementById("clients").textContent =
+          nombreClients;
+
+        let activite = document.createElement("p");
+        activite.className = "activity";
+        activite.textContent =
+          "Nouveau client ajouté : " + nom;
+
+        document.getElementById("activites")
+          .prepend(activite);
+
+        alert("Client ajouté avec succès !");
+      }
+    }
+  </script>
+
+</body>
+</html>
